@@ -1,0 +1,7 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../block_matrix_multiplier.srcs/sources_1/new/dpram.vhd" \
+"../../../../block_matrix_multiplier.srcs/sim_1/new/dpram_tb.vhd" \
+
+# Do not sort compile order
+nosort
