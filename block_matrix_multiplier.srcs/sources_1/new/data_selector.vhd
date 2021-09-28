@@ -65,28 +65,39 @@ signal state: state_type:= s1;
 
 begin
 
-convert: process(clk)
-begin
-    if rising_edge(clk) then
-        -- convert 1D array to 2D array
-        for i in 0 to 7 loop
-            for j in 0 to 7 loop
---                mat_A(i, j) <= A((i*8+j+1)*8-1 downto (i*8+j)*8);
---                mat_B(i, j) <= B((i*8+j+1)*8-1 downto (i*8+j)*8);
-                  mat_A(i)(j) <= A((i*8+j+1)*8-1 downto (i*8+j)*8);
-                  mat_B(i)(j) <= B((i*8+j+1)*8-1 downto (i*8+j)*8);
-            end loop;
-        end loop;
-    end if;
-end process;
+--convert: process(clk)
+--begin
+--    if rising_edge(clk) then
+--        -- convert 1D array to 2D array
+--        for i in 0 to 7 loop
+--            for j in 0 to 7 loop
+----                mat_A(i, j) <= A((i*8+j+1)*8-1 downto (i*8+j)*8);
+----                mat_B(i, j) <= B((i*8+j+1)*8-1 downto (i*8+j)*8);
+--                  mat_A(i)(j) <= A((i*8+j+1)*8-1 downto (i*8+j)*8);
+--                  mat_B(i)(j) <= B((i*8+j+1)*8-1 downto (i*8+j)*8);
+--            end loop;
+--        end loop;
+--    end if;
+--end process;
 
 FSM: process (clk, reset)
 begin
     if (reset = '1') then
         state <= s1;
         mat_A <= (others => (others => X"00")); 
-        mat_B <= (others => (others => X"00"));     
+        mat_B <= (others => (others => X"00"));
+             
     elsif rising_edge(clk) then
+        -- convert 1D array to 2D array
+        for i in 0 to 7 loop
+            for j in 0 to 7 loop
+    --                mat_A(i, j) <= A((i*8+j+1)*8-1 downto (i*8+j)*8);
+    --                mat_B(i, j) <= B((i*8+j+1)*8-1 downto (i*8+j)*8);
+                  mat_A(i)(j) <= A((i*8+j+1)*8-1 downto (i*8+j)*8);
+                  mat_B(i)(j) <= B((i*8+j+1)*8-1 downto (i*8+j)*8);
+            end loop;
+        end loop;
+        
         case state is
             when s1 => -- output A11, B11
 --                A_b <= unsigned(A(7 downto 0) + A((1+8) downto (0+8)));
@@ -109,6 +120,8 @@ begin
                 A_b <= unsigned(A(3 downto 2) + A((3+8) downto (2+8)));
                 B_b <= unsigned(B(3 downto 2) + B((3+8) downto (2+8)));
                 state <= s3;
+            when others =>
+                state <= s1;
             -- when s3 => -- output A13, B13
             --     A_b <= unsigned(A(5 downto 4) + A((5+8) downto (4+8)));
             --     B_b <= unsigned(B(5 downto 4) + B((5+8) downto (4+8)));

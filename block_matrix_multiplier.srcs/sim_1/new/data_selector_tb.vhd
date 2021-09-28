@@ -50,21 +50,28 @@ end component;
 -- Inputs
 signal clk: std_logic := '0';
 signal reset: std_logic := '0';
+signal enable: std_logic := '0';
 signal A, B: unsigned(511 downto 0);
 signal A_b, B_b: unsigned(31 downto 0);
 signal done: std_logic;
 -- Clock period definitions
 constant clk_period : time := 10 ns;
 
--- Instantiate the Unit Under Test (UUT)
---uut: data_selector port map(
---    clk => clk;
---    reest => reset;
---    enable => enable;
---    A => 
---    );
+
 
 begin
+-- Instantiate the Unit Under Test (UUT)
+uut: data_selector port map(
+    clk => clk,
+    reset => reset,
+    enable => enable,
+    A => A,
+    B => B,
+    A_b => A_b,
+    B_b => B_b,
+    done => done
+    );
+    
 -- Clock process definitions
 clk_process :process
 begin
