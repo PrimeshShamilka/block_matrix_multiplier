@@ -52,6 +52,7 @@ signal clk: std_logic := '0';
 signal reset: std_logic := '0';
 signal enable: std_logic := '0';
 signal A, B: unsigned(511 downto 0);
+-- Outputs
 signal A_b, B_b: unsigned(31 downto 0);
 signal done: std_logic;
 -- Clock period definitions
