@@ -2,11 +2,12 @@
 # Webtalk v2018.2 (64-bit)
 # SW Build 2258646 on Thu Jun 14 20:03:12 MDT 2018
 # IP Build 2256618 on Thu Jun 14 22:10:49 MDT 2018
-# Start of session at: Fri Oct  8 00:25:18 2021
-# Process ID: 6880
+# Start of session at: Sat Oct 16 12:51:51 2021
+# Process ID: 9580
 # Current directory: E:/PROJECTS/FPGA/block_matrix_multiplier/block_matrix_multiplier.sim/sim_1/behav/xsim
-# Command line: wbtcv.exe -mode batch -source E:/PROJECTS/FPGA/block_matrix_multiplier/block_matrix_multiplier.sim/sim_1/behav/xsim/xsim.dir/data_selector_top_tb_behav/webtalk/xsim_webtalk.tcl -notrace
+# Command line: wbtcv.exe -mode batch -source E:/PROJECTS/FPGA/block_matrix_multiplier/block_matrix_multiplier.sim/sim_1/behav/xsim/xsim.dir/data_selector_bottom_tb_behav/webtalk/xsim_webtalk.tcl -notrace
 # Log file: E:/PROJECTS/FPGA/block_matrix_multiplier/block_matrix_multiplier.sim/sim_1/behav/xsim/webtalk.log
 # Journal file: E:/PROJECTS/FPGA/block_matrix_multiplier/block_matrix_multiplier.sim/sim_1/behav/xsim\webtalk.jou
 #-----------------------------------------------------------
-source E:/PROJECTS/FPGA/block_matrix_multiplier/block_matrix_multiplier.sim/sim_1/behav/xsim/xsim.dir/data_selector_top_tb_behav/webtalk/xsim_webtalk.tcl -notrace
+source E:/PROJECTS/FPGA/block_matrix_multiplier/block_matrix_multiplier.sim/sim_1/behav/xsim/xsim.dir/data_selector_bottom_tb_behav/webtalk/xsim_webtalk.tcl -notrace
+INFO: [Common 17-206] Exiting Webtalk at Sat Oct 16 12:51:53 2021...

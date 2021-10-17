@@ -56,7 +56,7 @@ signal A_b, B_b: unsigned(127 downto 0);
 signal A_b_b, B_b_b: unsigned(31 downto 0);
 signal done: std_logic;
 -- Clock period definitions
-constant clk_period : time := 40 ns;
+constant clk_period : time := 80 ns;
 
 begin
 -- Instantiate the Unit Under Test (UUT)
@@ -91,7 +91,6 @@ begin
          X"34" & X"33" & X"32" & X"31" &
          X"24" & X"23" & X"22" & X"21" &
          X"14" & X"13" & X"12" & X"11";
-    wait for 10 ns;
     wait;
 end process;
 
