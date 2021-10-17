@@ -42,7 +42,7 @@ uut: data_selector_top port map(
     );
     
 -- Clock process definitions
-clk_process :process
+clk  :process
 begin
     clk <= '1';
     wait for clk_period/2;
@@ -50,14 +50,14 @@ begin
     wait for clk_period/2;
 end process;
 
-stim_proc: process
+stimulus    : process
 begin 
+    enable<='1'
     A <= X"1" & X"1" & 
          X"1" & X"1";
 
     A <= X"1" & X"1" & 
          X"1" & X"1";     
-    
     wait;
 end process;
 
