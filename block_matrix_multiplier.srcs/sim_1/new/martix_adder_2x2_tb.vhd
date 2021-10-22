@@ -3,12 +3,12 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.numeric_std.all;
 
-entity matrix_multiplier_2x2_tb is
+entity matrix_adder_2x2_tb is
 --  Port ( );
-end matrix_multiplier_2x2_tb;
+end matrix_adder_2x2_tb;
 
-architecture Behavioral of matrix_multiplier_2x2_tb is
-component matrix_multiplier_2x2 
+architecture Behavioral of matrix_adder_2x2_tb is
+component matrix_adder_2x2 
   Port (clk: in std_logic;
         reset: in std_logic;
         enable: in std_logic;
@@ -31,7 +31,7 @@ constant clk_period : time := 10 ns;
 
 begin
 -- Instantiate the Unit Under Test (UUT)
-uut: matrix_multiplier_2x2 port map(
+uut: matrix_adder_2x2 port map(
     clk => clk,
     reset => reset,
     enable => enable,
