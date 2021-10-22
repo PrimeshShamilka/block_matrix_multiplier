@@ -24,6 +24,7 @@ begin
     if(reset = '1') then
         mat_A <= (others => (others => X"00")); 
         mat_B <= (others => (others => X"00")); 
+        done <= '0';
     elsif(rising_edge(clk)) then
         for i in 0 to 1 loop
             for j in 0 to 1 loop
@@ -47,7 +48,7 @@ begin
                 C(i) = matC(1)(15- (i mod 8))
             end if;
             if(i==31) then
-                done<='1';
+                done<=not done;
             end if;
         end loop;
     end if;
