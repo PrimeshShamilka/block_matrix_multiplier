@@ -1,4 +1,0 @@
-INFO: [VRFC 10-163] Analyzing VHDL file "E:/PROJECTS/FPGA/block_matrix_multiplier/block_matrix_multiplier.srcs/sources_1/new/data_selector_bottom.vhd" into library xil_defaultlib
-INFO: [VRFC 10-307] analyzing entity data_selector_bottom
-INFO: [VRFC 10-163] Analyzing VHDL file "E:/PROJECTS/FPGA/block_matrix_multiplier/block_matrix_multiplier.srcs/sim_1/new/data_selector_bottom_tb.vhd" into library xil_defaultlib
-INFO: [VRFC 10-307] analyzing entity data_selector_bottom_tb

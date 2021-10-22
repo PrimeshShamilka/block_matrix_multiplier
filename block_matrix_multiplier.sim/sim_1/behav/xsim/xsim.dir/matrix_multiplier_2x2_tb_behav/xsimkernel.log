@@ -1,0 +1,7 @@
+Running: xsim.dir/matrix_multiplier_2x2_tb_behav/xsimk.exe -simmode gui -wdb matrix_multiplier_2x2_tb_behav.wdb -simrunnum 0 -socket 51102
+Design successfully loaded
+Design Loading Memory Usage: 5692 KB (Peak: 5692 KB)
+Design Loading CPU Usage: 62 ms
+Simulation completed
+Simulation Memory Usage: 6244 KB (Peak: 6244 KB)
+Simulation CPU Usage: 249 ms

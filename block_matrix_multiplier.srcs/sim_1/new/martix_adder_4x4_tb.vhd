@@ -42,7 +42,7 @@ uut: matrix_adder_4x4 port map(
     );
     
 -- Clock process definitions
-clk  :process
+clock  :process
 begin
     clk <= '1';
     wait for clk_period/2;
@@ -52,7 +52,7 @@ end process;
 
 stimulus    : process
 begin 
-    enable<='1'
+    enable<='1';
     A <= X"1" & X"1" & X"1" & X"1" & 
          X"1" & X"1" & X"1" & X"1" & 
          X"1" & X"1" & X"1" & X"1" & 
