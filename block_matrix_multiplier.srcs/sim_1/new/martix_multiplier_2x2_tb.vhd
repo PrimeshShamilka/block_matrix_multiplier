@@ -8,7 +8,7 @@ entity matrix_multiplier_2x2_tb is
 end matrix_multiplier_2x2_tb;
 
 architecture Behavioral of matrix_multiplier_2x2_tb is
-component mat_mul_2x2 
+component matrix_multiplier_2x2 
   Port (clk: in std_logic;
         reset: in std_logic;
         enable: in std_logic;
@@ -27,11 +27,12 @@ signal A, B: unsigned(31 downto 0);
 signal C: unsigned(31 downto 0);
 signal done: std_logic;
 -- Clock period definitions
-constant clk_period : time := 40 ns;
+
+constant clk_period : time := 10 ns;
 
 begin
 -- Instantiate the Unit Under Test (UUT)
-uut: mat_mul_2x2 port map(
+uut: data_selector_top port map(
     clk => clk,
     reset => reset,
     enable => enable,
@@ -42,7 +43,9 @@ uut: mat_mul_2x2 port map(
     );
     
 -- Clock process definitions
-clk_process  :process
+
+clk  :process
+
 begin
     clk <= '1';
     wait for clk_period/2;
@@ -52,12 +55,13 @@ end process;
 
 stimulus    : process
 begin 
-    enable<='1';
-    A <= X"01" & X"01" & 
-         X"01" & X"01";
+    enable<='1'
+    A <= X"1" & X"1" & 
+         X"1" & X"1";
 
-    B <= X"01" & X"01" & 
-         X"01" & X"01";     
+    A <= X"1" & X"1" & 
+         X"1" & X"1";     
+
     wait;
 end process;
 
