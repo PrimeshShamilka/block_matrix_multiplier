@@ -27,6 +27,7 @@ signal A, B: unsigned(31 downto 0);
 signal C: unsigned(31 downto 0);
 signal done: std_logic;
 -- Clock period definitions
+
 constant clk_period : time := 10 ns;
 
 begin
@@ -42,7 +43,9 @@ uut: data_selector_top port map(
     );
     
 -- Clock process definitions
+
 clk  :process
+
 begin
     clk <= '1';
     wait for clk_period/2;
@@ -58,6 +61,7 @@ begin
 
     A <= X"1" & X"1" & 
          X"1" & X"1";     
+
     wait;
 end process;
 
