@@ -27,7 +27,7 @@ signal A, B: unsigned(31 downto 0);
 signal C: unsigned(31 downto 0);
 signal done: std_logic;
 -- Clock period definitions
-constant clk_period : time := 10 ns;
+constant clk_period : time := 40 ns;
 
 begin
 -- Instantiate the Unit Under Test (UUT)
@@ -42,7 +42,7 @@ uut: mat_mul_2x2 port map(
     );
     
 -- Clock process definitions
-clock  :process
+clk_process  :process
 begin
     clk <= '1';
     wait for clk_period/2;
