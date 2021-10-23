@@ -23,7 +23,7 @@ signal state : state_type := init;
 begin
 
 process(clk,reset)
-variable temp : unsigned(7 downto 0) := (others => '0');
+--variable temp : unsigned(7 downto 0) := (others => '0');
 begin
     if (reset = '1') then
         mat_A <= (others => (others => X"00")); 

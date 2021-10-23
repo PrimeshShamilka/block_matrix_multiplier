@@ -8,13 +8,13 @@ entity matrix_adder_2x2_tb is
 end matrix_adder_2x2_tb;
 
 architecture Behavioral of matrix_adder_2x2_tb is
-component matrix_adder_2x2 
+component mat_add_2x2 
   Port (clk: in std_logic;
         reset: in std_logic;
         enable: in std_logic;
-        A, B: in unsigned(31 downto 0);
+        A: in unsigned(31 downto 0);
         C: out unsigned(31 downto 0);
-        done: out std_logic
+        done: inout std_logic
       );
 end component;
 
@@ -22,7 +22,7 @@ end component;
 signal clk: std_logic := '0';
 signal reset: std_logic := '0';
 signal enable: std_logic := '0';
-signal A, B: unsigned(31 downto 0);
+signal A: unsigned(31 downto 0);
 -- Outputs
 signal C: unsigned(31 downto 0);
 signal done: std_logic;
@@ -31,12 +31,11 @@ constant clk_period : time := 10 ns;
 
 begin
 -- Instantiate the Unit Under Test (UUT)
-uut: matrix_adder_2x2 port map(
+uut: mat_add_2x2 port map(
     clk => clk,
     reset => reset,
     enable => enable,
     A => A,
-    B => B,
     C => C,
     done => done
     );
@@ -53,11 +52,11 @@ end process;
 stimulus    : process
 begin 
     enable<='1';
-    A <= X"1" & X"1" & 
-         X"1" & X"1";
-
-    B <= X"1" & X"1" & 
-         X"1" & X"1";     
+    A <= X"01" & X"01" & 
+         X"01" & X"01";
+    wait for clk_period;
+    A <= X"01" & X"02" & 
+         X"01" & X"02";     
     wait;
 end process;
 

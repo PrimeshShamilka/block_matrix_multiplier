@@ -3,6 +3,12 @@
 Jun 14 2018
 20:41:02
 D:/Krishi/CampusProjects/block_matrix_multiplier/block_matrix_multiplier.srcs/sim_1/new/data_selector_bottom_tb.vhd,1634913990,vhdl,,,,data_selector_bottom_tb,,,,,,,,
+D:/Krishi/CampusProjects/block_matrix_multiplier/block_matrix_multiplier.srcs/sim_1/new/martix_adder_2x2_tb.vhd,1635007289,vhdl,,,,matrix_adder_2x2_tb,,,,,,,,
+D:/Krishi/CampusProjects/block_matrix_multiplier/block_matrix_multiplier.srcs/sim_1/new/martix_adder_4x4_tb.vhd,1635007397,vhdl,,,,matrix_adder_4x4_tb,,,,,,,,
+D:/Krishi/CampusProjects/block_matrix_multiplier/block_matrix_multiplier.srcs/sim_1/new/martix_buffer_4x4_tb.vhd,1635010160,vhdl,,,,matrix_buffer_4x4_tb,,,,,,,,
 D:/Krishi/CampusProjects/block_matrix_multiplier/block_matrix_multiplier.srcs/sim_1/new/martix_multiplier_2x2_tb.vhd,1634919682,vhdl,,,,matrix_multiplier_2x2_tb,,,,,,,,
 D:/Krishi/CampusProjects/block_matrix_multiplier/block_matrix_multiplier.srcs/sources_1/new/data_selector_bottom.vhd,1634913990,vhdl,,,,data_selector_bottom,,,,,,,,
-D:/Krishi/CampusProjects/block_matrix_multiplier/block_matrix_multiplier.srcs/sources_1/new/martix_multiplier_2x2.vhd,1634990499,vhdl,,,,mat_mul_2x2,,,,,,,,
+D:/Krishi/CampusProjects/block_matrix_multiplier/block_matrix_multiplier.srcs/sources_1/new/martix_multiplier_2x2.vhd,1634990561,vhdl,,,,mat_mul_2x2,,,,,,,,
+D:/Krishi/CampusProjects/block_matrix_multiplier/block_matrix_multiplier.srcs/sources_1/new/matrix_adder_2x2.vhd,1635007225,vhdl,,,,mat_add_2x2,,,,,,,,
+D:/Krishi/CampusProjects/block_matrix_multiplier/block_matrix_multiplier.srcs/sources_1/new/matrix_adder_4x4.vhd,1635007506,vhdl,,,,mat_add_4x4,,,,,,,,
+D:/Krishi/CampusProjects/block_matrix_multiplier/block_matrix_multiplier.srcs/sources_1/new/matrix_buffer_4x4.vhd,1635009212,vhdl,,,,mat_buf_4x4,,,,,,,,
