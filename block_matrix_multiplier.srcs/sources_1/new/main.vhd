@@ -124,7 +124,7 @@ signal B_b: unsigned(127 downto 0);
 -- Data selector bottom
 signal data_selc_bottom_reset: std_logic:= '0';
 signal data_selc_bottom_en: std_logic:= '0';
-signal data_selc_bottom_done: std_logic;
+signal data_selc_bottom_done: std_logic:= '1';
 signal A_b_b: unsigned(31 downto 0);
 signal B_b_b: unsigned(31 downto 0);
 
@@ -157,6 +157,7 @@ signal matrix_buffer_8x8_reset: std_logic:= '0';
 signal matrix_buffer_8x8_en: std_logic:= '0';
 signal matrix_buffer_8x8_done: std_logic:= '0';
 
+signal counter: integer:= 0;
 
 begin
     data_selector_top_Imp: data_selector_top port map(
@@ -231,11 +232,16 @@ begin
     begin
         if rising_edge(clk) then
             if data_selc_bottom_done = '1' then
+                counter <= counter + 1;
                 data_selc_top_en <= '1';
-                data_selc_bottom_done <= '0';
             else
                 data_selc_top_en <= '0';
             end if;
+            
+            if counter = 2 then
+                data_selc_bottom_done <= '0';
+            end if;
+            
 
             if data_selc_bottom_done = '0' then
                 data_selc_bottom_en <= '1';
