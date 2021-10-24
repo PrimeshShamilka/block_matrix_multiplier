@@ -20,8 +20,8 @@ signal mat_A,mat_B,mat_C,mat_D: mat_2x2 := (others => (others => X"00"));
 type row_4x4 is array (0 to 3) of unsigned (7 downto 0);
 type mat_4x4 is array (0 to 3) of row_4x4;
 signal mat_E: mat_4x4 := (others => (others => X"00"));
-type state_type is (readA,readB,readC,readD,combine);
-signal state : state_type := readA;
+type state_type is (init,readA,readB,readC,readD,combine);
+signal state : state_type := init;
 begin
 
 process(clk,reset)
@@ -34,6 +34,9 @@ begin
         done <= '0';
     elsif(rising_edge(clk)) then
         case state is 
+            when init=>
+                done <= '0';
+                state<=readA;
             when readA =>
                 for i in 0 to 1 loop
                     for j in 0 to 1 loop

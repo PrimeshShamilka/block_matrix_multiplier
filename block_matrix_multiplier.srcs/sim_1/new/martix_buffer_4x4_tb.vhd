@@ -54,13 +54,13 @@ begin
     enable<='1';
     A <= X"01" & X"01" & 
          X"01" & X"01";
-
+    wait for clk_period;
     A <= X"01" & X"01" & 
          X"01" & X"01";  
-    
+    wait for clk_period;
     A <= X"01" & X"01" & 
          X"01" & X"01";   
-    
+    wait for clk_period;
     A <= X"01" & X"01" & 
          X"01" & X"01";
     wait;
