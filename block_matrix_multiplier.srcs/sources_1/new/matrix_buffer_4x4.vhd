@@ -43,7 +43,7 @@ begin
                         mat_A(i)(j)<= A((i*2+j+1)*8-1 downto (i*2+j)*8);
                     end loop;
                 end loop;
-                state<=readB;
+              --  state<=readB;
             when readB =>
                 for i in 0 to 1 loop
                     for j in 0 to 1 loop
@@ -69,8 +69,8 @@ begin
                 for i in 0 to 1 loop
                     for j in 0 to 1 loop
                         mat_E(i)(j)     <= mat_A(i)(j);
-                        mat_E(i+2)(j)   <= mat_B(i)(j);
-                        mat_E(i)(j+2)   <= mat_C(i)(j);
+                        mat_E(i)(j+2)   <= mat_B(i)(j);
+                        mat_E(i+2)(j)   <= mat_C(i)(j);
                         mat_E(i+2)(j+2) <= mat_D(i)(j);
                     end loop;
                 end loop;
