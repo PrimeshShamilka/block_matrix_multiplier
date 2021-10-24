@@ -1,7 +1,16 @@
 Vivado Simulator 2018.2
 Copyright 1986-1999, 2001-2018 Xilinx, Inc. All Rights Reserved.
-Running: D:/Krishi/VivadoProgram/Vivado/2018.2/bin/unwrapped/win64.o/xelab.exe -wto f5566d3afa214a379a70c32663602730 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot matrix_buffer_4x4_tb_behav xil_defaultlib.matrix_buffer_4x4_tb -log elaborate.log 
+Running: D:/Krishi/VivadoProgram/Vivado/2018.2/bin/unwrapped/win64.o/xelab.exe -wto f5566d3afa214a379a70c32663602730 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot matrix_buffer_8x8_tb_behav xil_defaultlib.matrix_buffer_8x8_tb -log elaborate.log 
 Using 2 slave threads.
 Starting static elaboration
 Completed static elaboration
-INFO: [XSIM 43-4323] No Change in HDL. Linking previously generated obj files to create kernel
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package std.standard
+Compiling package std.textio
+Compiling package ieee.std_logic_1164
+Compiling package ieee.numeric_std
+Compiling architecture behavioral of entity xil_defaultlib.mat_buf_8x8 [mat_buf_8x8_default]
+Compiling architecture behavioral of entity xil_defaultlib.matrix_buffer_8x8_tb
+Built simulation snapshot matrix_buffer_8x8_tb_behav
