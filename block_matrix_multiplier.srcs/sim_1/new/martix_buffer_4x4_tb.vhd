@@ -52,15 +52,16 @@ end process;
 stimulus    : process
 begin 
     enable<='1';
+    wait for clk_period;
     A <= X"01" & X"01" & 
          X"01" & X"01";
-    wait for clk_period*2;
+    wait for clk_period;
     A <= X"02" & X"02" & 
          X"02" & X"02";  
-    wait for clk_period*2;
+    wait for clk_period;
     A <= X"03" & X"03" & 
          X"03" & X"03";   
-    wait for clk_period*2;
+    wait for clk_period;
     A <= X"04" & X"04" & 
          X"04" & X"04";
     wait;
