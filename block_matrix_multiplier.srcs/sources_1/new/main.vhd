@@ -64,7 +64,7 @@ component data_selector_bottom
     );
 end component;
 
-component matrix_multiplier_2x2
+component mat_mul_2x2
     port(clk: in std_logic; 
         reset: in std_logic;
         enable: in std_logic;
@@ -74,7 +74,7 @@ component matrix_multiplier_2x2
         );
 end component;
 
-component matrix_added_2x2
+component mat_add_2x2
     port(clk: in std_logic; 
         reset: in std_logic;
         enable: in std_logic;
@@ -84,7 +84,7 @@ component matrix_added_2x2
         );
 end component;
 
-component matrix_buffer_4x4
+component mat_buf_4x4
     port(clk: in std_logic; 
         reset: in std_logic;
         enable: in std_logic;
@@ -94,7 +94,7 @@ component matrix_buffer_4x4
         );
 end component;
 
-component matrix_adder_4x4
+component mat_add_4x4
     port(clk: in std_logic; 
         reset: in std_logic;
         enable: in std_logic;
@@ -104,7 +104,14 @@ component matrix_adder_4x4
         );
 end component;
 
-component matrix_buffer_8x8
+component mat_buf_8x8
+    port(clk: in std_logic; 
+        reset: in std_logic;
+        enable: in std_logic;
+        A: in unsigned(127 downto 0);
+        E: out unsigned(511 downto 0);
+        done:out std_logic
+        );
 end component;
 
 -- Data selector top
@@ -174,7 +181,7 @@ begin
         done => done
     );
 
-    matrix_multiplier_2x2_Imp: matrix_multiplier_2x2 port map(
+    matrix_multiplier_2x2_Imp: mat_mul_2x2 port map(
         clk => clk,
         reset => matrix_multiplier_2x2_reset,
         enable => matrix_multiplier_2x2_en,
@@ -184,7 +191,7 @@ begin
         done => done
     );
 
-    matrix_adder_2x2_Imp: matrix_adder_2x2 port map(
+    matrix_adder_2x2_Imp: mat_add_2x2 port map(
         clk => clk,
         reset => matrix_adder_2x2_reset,
         enable => matrix_adder_2x2_en,
@@ -193,7 +200,7 @@ begin
         done => matrix_adder_2x2_done
     );
 
-    matrix_buffer_4x4_Imp: matrix_buffer_4x4 port map(
+    matrix_buffer_4x4_Imp: mat_buf_4x4 port map(
         clk => clk,
         reset => matrix_buffer_4x4_reset,
         enable => matrix_buffer_4x4_en,
@@ -202,7 +209,7 @@ begin
         done => matrix_buffer_4x4_done
     );
 
-    matrix_adder_4x4_Imp: matrix_adder_4x4 port map(
+    matrix_adder_4x4_Imp: mat_add_4x4 port map(
         clk => clk,
         reset => matrix_adder_4x4_reset,
         enable => matrix_adder_4x4_en,
@@ -211,7 +218,7 @@ begin
         done => matrix_adder_4x4_done
     );
 
-    matrix_buffer_8x8_Imp: matrix_buffer_8x8 port map(
+    matrix_buffer_8x8_Imp: mat_buf_8x8 port map(
         clk => clk,
         reset => matrix_buffer_8x8_reset,
         enable => matrix_buffer_8x8_en,
