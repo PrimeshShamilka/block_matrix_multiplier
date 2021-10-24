@@ -74,194 +74,195 @@ begin
     state <= s0;
     mat_Ab <= (others => (others => X"00")); 
     mat_Bb <= (others => (others => X"00"));
-         
-    elsif rising_edge(clk) then
+    
+    elsif (enable = '1') then
+        if rising_edge(clk) then
 
-        case state is
-            when s0 =>
-                -- convert 1D array to 2D array
-                for i in 0 to 3 loop
-                for j in 0 to 3 loop
-                        mat_Ab(i)(j) <= A_b((i*4+j+1)*8-1 downto (i*4+j)*8);
-                        mat_Bb(i)(j) <= B_b((i*4+j+1)*8-1 downto (i*4+j)*8);
-                end loop;
-                end loop;
-                state <= s1;
-        
-            when s1 => -- output A11, B11
-                mat_Abb(0)(0) <= mat_Ab(0)(0);
-                mat_Abb(0)(1) <= mat_Ab(0)(1);
-                mat_Abb(1)(0) <= mat_Ab(1)(0);
-                mat_Abb(1)(1) <= mat_Ab(1)(1);
+            case state is
+                when s0 =>
+                    -- convert 1D array to 2D array
+                    for i in 0 to 3 loop
+                    for j in 0 to 3 loop
+                            mat_Ab(i)(j) <= A_b((i*4+j+1)*8-1 downto (i*4+j)*8);
+                            mat_Bb(i)(j) <= B_b((i*4+j+1)*8-1 downto (i*4+j)*8);
+                    end loop;
+                    end loop;
+                    state <= s1;
             
-                mat_Bbb(0)(0) <= mat_Bb(0)(0);
-                mat_Bbb(0)(1) <= mat_Bb(0)(1);
-                mat_Bbb(1)(0) <= mat_Bb(1)(0);
-                mat_Bbb(1)(1) <= mat_Bb(1)(1);
-
-                -- convert 2D arrays to 1D arrays
-                for i in 0 to 1 loop
-                for j in 0 to 1 loop
-                    A_b_b((i*2+j+1)*8-1 downto (i*2+j)*8) <= mat_Abb(i)(j);
-                    B_b_b((i*2+j+1)*8-1 downto (i*2+j)*8) <= mat_Bbb(i)(j);
-                end loop;
-                end loop;
-                done <= '1';
-                state <= s2;
-
-            when s2 => -- output A12, B13
-                mat_Abb(0)(0) <= mat_Ab(0)(2);
-                mat_Abb(0)(1) <= mat_Ab(0)(3);
-                mat_Abb(1)(0) <= mat_Ab(1)(2);
-                mat_Abb(1)(1) <= mat_Ab(1)(3);
-            
-                mat_Bbb(0)(0) <= mat_Bb(2)(0);
-                mat_Bbb(0)(1) <= mat_Bb(2)(1);
-                mat_Bbb(1)(0) <= mat_Bb(3)(0);
-                mat_Bbb(1)(1) <= mat_Bb(3)(1);
-
-                -- convert 2D arrays to 1D arrays
-                for i in 0 to 1 loop
-                for j in 0 to 1 loop
-                    A_b_b((i*2+j+1)*8-1 downto (i*2+j)*8) <= mat_Abb(i)(j);
-                    B_b_b((i*2+j+1)*8-1 downto (i*2+j)*8) <= mat_Bbb(i)(j);
-                end loop;
-                end loop;
-                done <= '1';
-                state <= s3;    
-            
-            when s3 => -- output A11, B12
-                mat_Abb(0)(0) <= mat_Ab(0)(0);
-                mat_Abb(0)(1) <= mat_Ab(0)(1);
-                mat_Abb(1)(0) <= mat_Ab(1)(0);
-                mat_Abb(1)(1) <= mat_Ab(1)(1);
-            
-                mat_Bbb(0)(0) <= mat_Bb(0)(2);
-                mat_Bbb(0)(1) <= mat_Bb(0)(3);
-                mat_Bbb(1)(0) <= mat_Bb(1)(2);
-                mat_Bbb(1)(1) <= mat_Bb(1)(3);
-
-                -- convert 2D arrays to 1D arrays
-                for i in 0 to 1 loop
-                for j in 0 to 1 loop
-                    A_b_b((i*2+j+1)*8-1 downto (i*2+j)*8) <= mat_Abb(i)(j);
-                    B_b_b((i*2+j+1)*8-1 downto (i*2+j)*8) <= mat_Bbb(i)(j);
-                end loop;
-                end loop;
-                done <= '1';
-                state <= s4;    
+                when s1 => -- output A11, B11
+                    mat_Abb(0)(0) <= mat_Ab(0)(0);
+                    mat_Abb(0)(1) <= mat_Ab(0)(1);
+                    mat_Abb(1)(0) <= mat_Ab(1)(0);
+                    mat_Abb(1)(1) <= mat_Ab(1)(1);
                 
-            when s4 => -- output A12, B14
-                mat_Abb(0)(0) <= mat_Ab(0)(2);
-                mat_Abb(0)(1) <= mat_Ab(0)(3);
-                mat_Abb(1)(0) <= mat_Ab(1)(2);
-                mat_Abb(1)(1) <= mat_Ab(1)(3);
-            
-                mat_Bbb(0)(0) <= mat_Bb(2)(2);
-                mat_Bbb(0)(1) <= mat_Bb(2)(3);
-                mat_Bbb(1)(0) <= mat_Bb(3)(2);
-                mat_Bbb(1)(1) <= mat_Bb(3)(3);
+                    mat_Bbb(0)(0) <= mat_Bb(0)(0);
+                    mat_Bbb(0)(1) <= mat_Bb(0)(1);
+                    mat_Bbb(1)(0) <= mat_Bb(1)(0);
+                    mat_Bbb(1)(1) <= mat_Bb(1)(1);
 
-                -- convert 2D arrays to 1D arrays
-                for i in 0 to 1 loop
-                for j in 0 to 1 loop
-                    A_b_b((i*2+j+1)*8-1 downto (i*2+j)*8) <= mat_Abb(i)(j);
-                    B_b_b((i*2+j+1)*8-1 downto (i*2+j)*8) <= mat_Bbb(i)(j);
-                end loop;
-                end loop;
-                done <= '1';
-                state <= s5;       
+                    -- convert 2D arrays to 1D arrays
+                    for i in 0 to 1 loop
+                    for j in 0 to 1 loop
+                        A_b_b((i*2+j+1)*8-1 downto (i*2+j)*8) <= mat_Abb(i)(j);
+                        B_b_b((i*2+j+1)*8-1 downto (i*2+j)*8) <= mat_Bbb(i)(j);
+                    end loop;
+                    end loop;
+                    done <= '1';
+                    state <= s2;
+
+                when s2 => -- output A12, B13
+                    mat_Abb(0)(0) <= mat_Ab(0)(2);
+                    mat_Abb(0)(1) <= mat_Ab(0)(3);
+                    mat_Abb(1)(0) <= mat_Ab(1)(2);
+                    mat_Abb(1)(1) <= mat_Ab(1)(3);
                 
-            when s5 => -- output A13, B11
-                mat_Abb(0)(0) <= mat_Ab(2)(0);
-                mat_Abb(0)(1) <= mat_Ab(2)(1);
-                mat_Abb(1)(0) <= mat_Ab(3)(0);
-                mat_Abb(1)(1) <= mat_Ab(3)(1);
-            
-                mat_Bbb(0)(0) <= mat_Bb(0)(0);
-                mat_Bbb(0)(1) <= mat_Bb(0)(1);
-                mat_Bbb(1)(0) <= mat_Bb(1)(0);
-                mat_Bbb(1)(1) <= mat_Bb(1)(1);
+                    mat_Bbb(0)(0) <= mat_Bb(2)(0);
+                    mat_Bbb(0)(1) <= mat_Bb(2)(1);
+                    mat_Bbb(1)(0) <= mat_Bb(3)(0);
+                    mat_Bbb(1)(1) <= mat_Bb(3)(1);
 
-                -- convert 2D arrays to 1D arrays
-                for i in 0 to 1 loop
-                for j in 0 to 1 loop
-                    A_b_b((i*2+j+1)*8-1 downto (i*2+j)*8) <= mat_Abb(i)(j);
-                    B_b_b((i*2+j+1)*8-1 downto (i*2+j)*8) <= mat_Bbb(i)(j);
-                end loop;
-                end loop;
-                done <= '1';
-                state <= s6;              
+                    -- convert 2D arrays to 1D arrays
+                    for i in 0 to 1 loop
+                    for j in 0 to 1 loop
+                        A_b_b((i*2+j+1)*8-1 downto (i*2+j)*8) <= mat_Abb(i)(j);
+                        B_b_b((i*2+j+1)*8-1 downto (i*2+j)*8) <= mat_Bbb(i)(j);
+                    end loop;
+                    end loop;
+                    done <= '1';
+                    state <= s3;    
+                
+                when s3 => -- output A11, B12
+                    mat_Abb(0)(0) <= mat_Ab(0)(0);
+                    mat_Abb(0)(1) <= mat_Ab(0)(1);
+                    mat_Abb(1)(0) <= mat_Ab(1)(0);
+                    mat_Abb(1)(1) <= mat_Ab(1)(1);
+                
+                    mat_Bbb(0)(0) <= mat_Bb(0)(2);
+                    mat_Bbb(0)(1) <= mat_Bb(0)(3);
+                    mat_Bbb(1)(0) <= mat_Bb(1)(2);
+                    mat_Bbb(1)(1) <= mat_Bb(1)(3);
 
-            when s6 => -- output A14, B13
-                mat_Abb(0)(0) <= mat_Ab(2)(2);
-                mat_Abb(0)(1) <= mat_Ab(2)(3);
-                mat_Abb(1)(0) <= mat_Ab(3)(2);
-                mat_Abb(1)(1) <= mat_Ab(4)(3);
-            
-                mat_Bbb(0)(0) <= mat_Bb(2)(0);
-                mat_Bbb(0)(1) <= mat_Bb(2)(1);
-                mat_Bbb(1)(0) <= mat_Bb(3)(0);
-                mat_Bbb(1)(1) <= mat_Bb(3)(1);
-
-                -- convert 2D arrays to 1D arrays
-                for i in 0 to 1 loop
-                for j in 0 to 1 loop
-                    A_b_b((i*2+j+1)*8-1 downto (i*2+j)*8) <= mat_Abb(i)(j);
-                    B_b_b((i*2+j+1)*8-1 downto (i*2+j)*8) <= mat_Bbb(i)(j);
-                end loop;
-                end loop;
-                done <= '1';
-                state <= s7;
+                    -- convert 2D arrays to 1D arrays
+                    for i in 0 to 1 loop
+                    for j in 0 to 1 loop
+                        A_b_b((i*2+j+1)*8-1 downto (i*2+j)*8) <= mat_Abb(i)(j);
+                        B_b_b((i*2+j+1)*8-1 downto (i*2+j)*8) <= mat_Bbb(i)(j);
+                    end loop;
+                    end loop;
+                    done <= '1';
+                    state <= s4;    
                     
-            when s7 => -- output A13, B12
-                mat_Abb(0)(0) <= mat_Ab(2)(0);
-                mat_Abb(0)(1) <= mat_Ab(2)(1);
-                mat_Abb(1)(0) <= mat_Ab(3)(0);
-                mat_Abb(1)(1) <= mat_Ab(3)(1);
-            
-                mat_Bbb(0)(0) <= mat_Bb(0)(2);
-                mat_Bbb(0)(1) <= mat_Bb(0)(3);
-                mat_Bbb(1)(0) <= mat_Bb(1)(2);
-                mat_Bbb(1)(1) <= mat_Bb(1)(3);
-
-                -- convert 2D arrays to 1D arrays
-                for i in 0 to 1 loop
-                for j in 0 to 1 loop
-                    A_b_b((i*2+j+1)*8-1 downto (i*2+j)*8) <= mat_Abb(i)(j);
-                    B_b_b((i*2+j+1)*8-1 downto (i*2+j)*8) <= mat_Bbb(i)(j);
-                end loop;
-                end loop;
-                done <= '1';
-                state <= s8;      
+                when s4 => -- output A12, B14
+                    mat_Abb(0)(0) <= mat_Ab(0)(2);
+                    mat_Abb(0)(1) <= mat_Ab(0)(3);
+                    mat_Abb(1)(0) <= mat_Ab(1)(2);
+                    mat_Abb(1)(1) <= mat_Ab(1)(3);
                 
-            when s8 => -- output A14, B14
-                mat_Abb(0)(0) <= mat_Ab(2)(2);
-                mat_Abb(0)(1) <= mat_Ab(2)(3);
-                mat_Abb(1)(0) <= mat_Ab(3)(2);
-                mat_Abb(1)(1) <= mat_Ab(3)(3);
-            
-                mat_Bbb(0)(0) <= mat_Bb(2)(2);
-                mat_Bbb(0)(1) <= mat_Bb(2)(3);
-                mat_Bbb(1)(0) <= mat_Bb(3)(2);
-                mat_Bbb(1)(1) <= mat_Bb(3)(3);
+                    mat_Bbb(0)(0) <= mat_Bb(2)(2);
+                    mat_Bbb(0)(1) <= mat_Bb(2)(3);
+                    mat_Bbb(1)(0) <= mat_Bb(3)(2);
+                    mat_Bbb(1)(1) <= mat_Bb(3)(3);
 
-                -- convert 2D arrays to 1D arrays
-                for i in 0 to 1 loop
-                for j in 0 to 1 loop
-                    A_b_b((i*2+j+1)*8-1 downto (i*2+j)*8) <= mat_Abb(i)(j);
-                    B_b_b((i*2+j+1)*8-1 downto (i*2+j)*8) <= mat_Bbb(i)(j);
-                end loop;
-                end loop;
-                done <= '1';
-                state <= s1;              
+                    -- convert 2D arrays to 1D arrays
+                    for i in 0 to 1 loop
+                    for j in 0 to 1 loop
+                        A_b_b((i*2+j+1)*8-1 downto (i*2+j)*8) <= mat_Abb(i)(j);
+                        B_b_b((i*2+j+1)*8-1 downto (i*2+j)*8) <= mat_Bbb(i)(j);
+                    end loop;
+                    end loop;
+                    done <= '1';
+                    state <= s5;       
                     
-            when others =>
-                state <= s0;  
+                when s5 => -- output A13, B11
+                    mat_Abb(0)(0) <= mat_Ab(2)(0);
+                    mat_Abb(0)(1) <= mat_Ab(2)(1);
+                    mat_Abb(1)(0) <= mat_Ab(3)(0);
+                    mat_Abb(1)(1) <= mat_Ab(3)(1);
+                
+                    mat_Bbb(0)(0) <= mat_Bb(0)(0);
+                    mat_Bbb(0)(1) <= mat_Bb(0)(1);
+                    mat_Bbb(1)(0) <= mat_Bb(1)(0);
+                    mat_Bbb(1)(1) <= mat_Bb(1)(1);
 
-        end case;   
-    end if;
+                    -- convert 2D arrays to 1D arrays
+                    for i in 0 to 1 loop
+                    for j in 0 to 1 loop
+                        A_b_b((i*2+j+1)*8-1 downto (i*2+j)*8) <= mat_Abb(i)(j);
+                        B_b_b((i*2+j+1)*8-1 downto (i*2+j)*8) <= mat_Bbb(i)(j);
+                    end loop;
+                    end loop;
+                    done <= '1';
+                    state <= s6;              
 
+                when s6 => -- output A14, B13
+                    mat_Abb(0)(0) <= mat_Ab(2)(2);
+                    mat_Abb(0)(1) <= mat_Ab(2)(3);
+                    mat_Abb(1)(0) <= mat_Ab(3)(2);
+                    mat_Abb(1)(1) <= mat_Ab(4)(3);
+                
+                    mat_Bbb(0)(0) <= mat_Bb(2)(0);
+                    mat_Bbb(0)(1) <= mat_Bb(2)(1);
+                    mat_Bbb(1)(0) <= mat_Bb(3)(0);
+                    mat_Bbb(1)(1) <= mat_Bb(3)(1);
+
+                    -- convert 2D arrays to 1D arrays
+                    for i in 0 to 1 loop
+                    for j in 0 to 1 loop
+                        A_b_b((i*2+j+1)*8-1 downto (i*2+j)*8) <= mat_Abb(i)(j);
+                        B_b_b((i*2+j+1)*8-1 downto (i*2+j)*8) <= mat_Bbb(i)(j);
+                    end loop;
+                    end loop;
+                    done <= '1';
+                    state <= s7;
+                        
+                when s7 => -- output A13, B12
+                    mat_Abb(0)(0) <= mat_Ab(2)(0);
+                    mat_Abb(0)(1) <= mat_Ab(2)(1);
+                    mat_Abb(1)(0) <= mat_Ab(3)(0);
+                    mat_Abb(1)(1) <= mat_Ab(3)(1);
+                
+                    mat_Bbb(0)(0) <= mat_Bb(0)(2);
+                    mat_Bbb(0)(1) <= mat_Bb(0)(3);
+                    mat_Bbb(1)(0) <= mat_Bb(1)(2);
+                    mat_Bbb(1)(1) <= mat_Bb(1)(3);
+
+                    -- convert 2D arrays to 1D arrays
+                    for i in 0 to 1 loop
+                    for j in 0 to 1 loop
+                        A_b_b((i*2+j+1)*8-1 downto (i*2+j)*8) <= mat_Abb(i)(j);
+                        B_b_b((i*2+j+1)*8-1 downto (i*2+j)*8) <= mat_Bbb(i)(j);
+                    end loop;
+                    end loop;
+                    done <= '1';
+                    state <= s8;      
+                    
+                when s8 => -- output A14, B14
+                    mat_Abb(0)(0) <= mat_Ab(2)(2);
+                    mat_Abb(0)(1) <= mat_Ab(2)(3);
+                    mat_Abb(1)(0) <= mat_Ab(3)(2);
+                    mat_Abb(1)(1) <= mat_Ab(3)(3);
+                
+                    mat_Bbb(0)(0) <= mat_Bb(2)(2);
+                    mat_Bbb(0)(1) <= mat_Bb(2)(3);
+                    mat_Bbb(1)(0) <= mat_Bb(3)(2);
+                    mat_Bbb(1)(1) <= mat_Bb(3)(3);
+
+                    -- convert 2D arrays to 1D arrays
+                    for i in 0 to 1 loop
+                    for j in 0 to 1 loop
+                        A_b_b((i*2+j+1)*8-1 downto (i*2+j)*8) <= mat_Abb(i)(j);
+                        B_b_b((i*2+j+1)*8-1 downto (i*2+j)*8) <= mat_Bbb(i)(j);
+                    end loop;
+                    end loop;
+                    done <= '1';
+                    state <= s1;              
+                        
+                when others =>
+                    state <= s0;  
+
+            end case;   
+        end if;
+    end if; 
 end process;
 
 

@@ -60,7 +60,7 @@ constant clk_period : time := 40 ns;
 
 begin
 -- Instantiate the Unit Under Test (UUT)
-uut: data_selector_top port map(
+uut: main port map(
     clk => clk,
     reset => reset,
     enable => enable,
