@@ -223,8 +223,18 @@ begin
     FSM: process(clk, reset)
     begin
         if rising_edge(clk) then
-            data_selc_top_en <= '1';
-            data_selc_bottom_en <= '1';
+            if data_selc_bottom_done = '1' then
+                data_selc_top_en <= '1';
+                data_selc_bottom_done <= '0';
+            else
+                data_selc_top_en <= '0';
+            end if;
+
+            if data_selc_bottom_done = '0' then
+                data_selc_bottom_en <= '1';
+            else
+                data_selc_bottom_en <= '0';
+            end if;
         end if;
     end process;
 

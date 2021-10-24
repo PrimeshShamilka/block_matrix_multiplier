@@ -80,6 +80,7 @@ begin
 
             case state is
                 when s0 =>
+                    done <= '0';
                     -- convert 1D array to 2D array
                     for i in 0 to 3 loop
                     for j in 0 to 3 loop
@@ -107,7 +108,6 @@ begin
                         B_b_b((i*2+j+1)*8-1 downto (i*2+j)*8) <= mat_Bbb(i)(j);
                     end loop;
                     end loop;
-                    done <= '1';
                     state <= s2;
 
                 when s2 => -- output A12, B13
@@ -128,7 +128,6 @@ begin
                         B_b_b((i*2+j+1)*8-1 downto (i*2+j)*8) <= mat_Bbb(i)(j);
                     end loop;
                     end loop;
-                    done <= '1';
                     state <= s3;    
                 
                 when s3 => -- output A11, B12
@@ -149,7 +148,6 @@ begin
                         B_b_b((i*2+j+1)*8-1 downto (i*2+j)*8) <= mat_Bbb(i)(j);
                     end loop;
                     end loop;
-                    done <= '1';
                     state <= s4;    
                     
                 when s4 => -- output A12, B14
@@ -170,7 +168,6 @@ begin
                         B_b_b((i*2+j+1)*8-1 downto (i*2+j)*8) <= mat_Bbb(i)(j);
                     end loop;
                     end loop;
-                    done <= '1';
                     state <= s5;       
                     
                 when s5 => -- output A13, B11
@@ -191,7 +188,6 @@ begin
                         B_b_b((i*2+j+1)*8-1 downto (i*2+j)*8) <= mat_Bbb(i)(j);
                     end loop;
                     end loop;
-                    done <= '1';
                     state <= s6;              
 
                 when s6 => -- output A14, B13
@@ -212,7 +208,6 @@ begin
                         B_b_b((i*2+j+1)*8-1 downto (i*2+j)*8) <= mat_Bbb(i)(j);
                     end loop;
                     end loop;
-                    done <= '1';
                     state <= s7;
                         
                 when s7 => -- output A13, B12
@@ -233,7 +228,6 @@ begin
                         B_b_b((i*2+j+1)*8-1 downto (i*2+j)*8) <= mat_Bbb(i)(j);
                     end loop;
                     end loop;
-                    done <= '1';
                     state <= s8;      
                     
                 when s8 => -- output A14, B14
