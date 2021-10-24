@@ -43,7 +43,7 @@ component main
         enable: in std_logic;
         A, B: in unsigned(511 downto 0);
         C: out unsigned(511 downto 0);
-        done: out std_logic;
+        done: out std_logic
         );
 end component;
 

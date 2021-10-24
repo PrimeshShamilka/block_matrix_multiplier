@@ -21,6 +21,7 @@
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.numeric_std.all;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
@@ -37,7 +38,7 @@ entity main is
     enable: in std_logic;
     A, B: in unsigned(511 downto 0);
     C: out unsigned(511 downto 0);
-    done: out std_logic;
+    done: out std_logic
     );
 end main;
 
@@ -121,7 +122,7 @@ signal A_b_b: unsigned(31 downto 0);
 signal B_b_b: unsigned(31 downto 0);
 
 begin
-    data_selector_top: data_selector_top port map(
+    data_selector_top_Imp: data_selector_top port map(
         clk => clk,
         reset => data_selc_top_reset,
         enable => data_selc_top_en,
@@ -132,8 +133,8 @@ begin
         done => data_selc_top_done
     );
 
-    data_selector_bottom: data_selector_bottom port map(
-        clk => clk/8,
+    data_selector_bottom_Imp: data_selector_bottom port map(
+        clk => clk,
         reset => data_selc_bottom_reset,
         enable => data_selc_bottom_en,
         A_b => A_b,

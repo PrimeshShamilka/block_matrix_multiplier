@@ -1,0 +1,9 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../block_matrix_multiplier.srcs/sources_1/new/data_selector_bottom.vhd" \
+"../../../../block_matrix_multiplier.srcs/sources_1/new/data_selector_top.vhd" \
+"../../../../block_matrix_multiplier.srcs/sources_1/new/main.vhd" \
+"../../../../block_matrix_multiplier.srcs/sim_1/new/main_tb.vhd" \
+
+# Do not sort compile order
+nosort
