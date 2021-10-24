@@ -1,7 +1,8 @@
 Vivado Simulator 2018.2
 Copyright 1986-1999, 2001-2018 Xilinx, Inc. All Rights Reserved.
-Running: C:/Xilinx/Vivado/2018.2/bin/unwrapped/win64.o/xelab.exe -wto f5566d3afa214a379a70c32663602730 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot main_tb_behav xil_defaultlib.main_tb -log elaborate.log 
+Running: D:/Krishi/VivadoProgram/Vivado/2018.2/bin/unwrapped/win64.o/xelab.exe -wto f5566d3afa214a379a70c32663602730 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot main_tb_behav xil_defaultlib.main_tb -log elaborate.log 
 Using 2 slave threads.
 Starting static elaboration
+WARNING: [VRFC 10-923] index value <4> is out of range [0:3] of array <mat_ab> [D:/Krishi/CampusProjects/block_matrix_multiplier/block_matrix_multiplier.srcs/sources_1/new/data_selector_bottom.vhd:201]
 Completed static elaboration
 INFO: [XSIM 43-4323] No Change in HDL. Linking previously generated obj files to create kernel
