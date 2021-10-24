@@ -114,12 +114,42 @@ signal data_selc_top_done: std_logic;
 signal A_b: unsigned(127 downto 0);
 signal B_b: unsigned(127 downto 0);
 
--- Data selector down
+-- Data selector bottom
 signal data_selc_bottom_reset: std_logic:= '0';
 signal data_selc_bottom_en: std_logic:= '0';
 signal data_selc_bottom_done: std_logic:= '1';
 signal A_b_b: unsigned(31 downto 0);
 signal B_b_b: unsigned(31 downto 0);
+
+-- Matrix multiplier 2x2
+signal matrix_multiplier_2x2_reset: std_logic:= '0';
+signal matrix_multiplier_2x2_en: std_logic:= '0';
+signal matrix_multiplier_2x2_done: std_logic:= '0';
+signal C_b_b_b: unsigned(31 downto 0);
+
+-- Matrix adder 2x2
+signal matrix_adder_2x2_reset: std_logic:= '0';
+signal matrix_adder_2x2_en: std_logic:= '0';
+signal matrix_adder_2x2_done: std_logic:= '0';
+signal C_b_b: unsigned(31 downto 0);
+
+-- Matrix buffer 4x4
+signal matrix_buffer_4x4_reset: std_logic:= '0';
+signal matrix_buffer_4x4_en: std_logic:= '0';
+signal matrix_buffer_4x4_done: std_logic:= '0';
+signal E: unsigned(127 downto 0);
+
+-- Matrix adder 4x4
+signal matrix_adder_4x4_reset: std_logic:= '0';
+signal matrix_adder_4x4_en: std_logic:= '0';
+signal matrix_adder_4x4_done: std_logic:= '0';
+signal E_sum: unsigned(127 downto 0);
+
+-- Matrix buffer 8x8
+signal matrix_buffer_8x8_reset: std_logic:= '0';
+signal matrix_buffer_8x8_en: std_logic:= '0';
+signal matrix_buffer_8x8_done: std_logic:= '0';
+
 
 begin
     data_selector_top_Imp: data_selector_top port map(
@@ -144,6 +174,51 @@ begin
         done => data_selc_bottom_done
     );
 
+    matrix_multiplier_2x2_Imp: matrix_multiplier_2x2 port map(
+        clk => clk,
+        reset => matrix_multiplier_2x2_reset,
+        enable => matrix_multiplier_2x2_en,
+        A => A_b_b,
+        B => B_b_b,
+        C => C_b_b_b,
+        done => done
+    );
+
+    matrix_adder_2x2_Imp: matrix_adder_2x2 port map(
+        clk => clk,
+        reset => matrix_adder_2x2_reset,
+        enable => matrix_adder_2x2_en,
+        A => C_b_b_b,
+        C => C_b_b,
+        done => matrix_adder_2x2_done
+    );
+
+    matrix_buffer_4x4_Imp: matrix_buffer_4x4 port map(
+        clk => clk,
+        reset => matrix_buffer_4x4_reset,
+        enable => matrix_buffer_4x4_en,
+        A => C_b_b,
+        E => E,
+        done => matrix_buffer_4x4_done
+    );
+
+    matrix_adder_4x4_Imp: matrix_adder_4x4 port map(
+        clk => clk,
+        reset => matrix_adder_4x4_reset,
+        enable => matrix_adder_4x4_en,
+        A => E,
+        C => E_sum,
+        done => matrix_adder_4x4_done
+    );
+
+    matrix_buffer_8x8_Imp: matrix_buffer_8x8 port map(
+        clk => clk,
+        reset => matrix_buffer_8x8_reset,
+        enable => matrix_buffer_8x8_en,
+        A => E_sum,
+        E => C,
+        done => matrix_buffer_8x8_done
+    );
 
     FSM: process(clk, reset)
     begin
