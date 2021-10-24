@@ -81,6 +81,8 @@ end process;
 
 stim_proc: process
 begin 
+    wait for clk_period;
+    
     A <= X"88" & X"87" & X"86" & X"85" & X"84" & X"83" & X"82" & X"81" &
          X"78" & X"77" & X"76" & X"75" & X"74" & X"73" & X"72" & X"71" &
          X"68" & X"67" & X"66" & X"65" & X"64" & X"63" & X"62" & X"61" &

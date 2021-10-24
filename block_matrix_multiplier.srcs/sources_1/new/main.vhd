@@ -117,7 +117,7 @@ signal B_b: unsigned(127 downto 0);
 -- Data selector down
 signal data_selc_bottom_reset: std_logic:= '0';
 signal data_selc_bottom_en: std_logic:= '0';
-signal data_selc_bottom_done: std_logic;
+signal data_selc_bottom_done: std_logic:= '1';
 signal A_b_b: unsigned(31 downto 0);
 signal B_b_b: unsigned(31 downto 0);
 
@@ -141,15 +141,25 @@ begin
         B_b => B_b,
         A_b_b => A_b_b,
         B_b_b => B_b_b,
-        done => done
+        done => data_selc_bottom_done
     );
 
 
     FSM: process(clk, reset)
     begin
         if rising_edge(clk) then
-            data_selc_top_en <= '1';
-            data_selc_bottom_en <= '1';
+            if data_selc_bottom_done = '1' then
+                data_selc_top_en <= '1';
+                data_selc_bottom_done <= '0';
+            else
+                data_selc_top_en <= '0';
+            end if;
+
+            if data_selc_bottom_done = '0' then
+                data_selc_bottom_en <= '1';
+            else
+                data_selc_bottom_en <= '0';
+            end if;
         end if;
     end process;
 
