@@ -1,7 +1,0 @@
-Running: xsim.dir/matrix_adder_4x4_tb_behav/xsimk.exe -simmode gui -wdb matrix_adder_4x4_tb_behav.wdb -simrunnum 0 -socket 59191
-Design successfully loaded
-Design Loading Memory Usage: 6152 KB (Peak: 6152 KB)
-Design Loading CPU Usage: 46 ms
-Simulation completed
-Simulation Memory Usage: 6724 KB (Peak: 6724 KB)
-Simulation CPU Usage: 77 ms
